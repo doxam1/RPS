@@ -1,30 +1,38 @@
 let compAnswerGlobal;
+let compAnswerGlobalString;
 function getComputerChoice () {
     let answers = ['papper', 'scissors', 'rock'];
     compAnswer = Math.floor(Math.random() * answers.length)
-    compAnswerGlobal = answer;
-    if (answer == 0) {
-        console.log ('papper');
-    } else if (answer == 1) {
-        console.log ('scissors');
+    compAnswerGlobal = +compAnswer;
+    if (compAnswer == 0) {
+        compAnswerGlobalString = ('papper');
+        console.log ('comp choose papper');
+    } else if (compAnswer == 1) {
+        console.log ('comp choose scissors');
+        compAnswerGlobalString = ('scissors');
     } else {
-        console.log ('rock');
+        console.log ('comp choose rock');
+        compAnswerGlobalString = ('rock')
     }
 }
 let userAnswerGlobal;
+let userAnswerGlobalString;
 function playerSelection () {
     let answers = ['papper', 'scissors', 'rock'];
     userAnswer = prompt('please choose: 1. rock 2. paper 3.scissors : ')
     if (userAnswer == 1 || userAnswer == 2 || userAnswer == 3) {
         if (userAnswer == 1) {
-            userAnswerGlobal = 2;
+            userAnswerGlobal = +2;
+            userAnswerGlobalString = 'rock';
             console.log('you choose rock')
         } else if (userAnswer == 2) {
-            userAnswerGlobal = 0;
+            userAnswerGlobalString = 'papper';
+            userAnswerGlobal = +0;
             console.log('you choose papper')
         } else {
-            userAnswerGlobal = 1;
-            console.log('you choose scissors')
+            userAnswerGlobal = +1;
+            userAnswerGlobalString = 'scissors';
+            console.log('you choose scissors');
         }
     }
     else {
@@ -32,4 +40,20 @@ function playerSelection () {
         playerSelection();
     }
 }
+function playRound () {
+    playerSelection();
+    getComputerChoice();
+    console.log(compAnswerGlobal, userAnswerGlobal);
+    if (parseInt(compAnswerGlobal) > parseInt(userAnswerGlobal)) {
+        console.log ('you lose! ' + compAnswerGlobalString + ' is stronger then ' + userAnswerGlobalString);
+    } else if (parseInt(userAnswerGlobal) > parseInt(compAnswerGlobal)) {
+        console.log ('You Win! ' + userAnswerGlobalString + ' is stronger then ' + compAnswerGlobalString);
+    } else {
+        console.log ('It\'s a tie! you both choose ' + compAnswerGlobalString);
+    }
+}
+
+
+
+
 
