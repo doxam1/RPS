@@ -1,0 +1,24 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 97vh;
+    /* border: 2px solid rgb(218, 25, 137); */
+    background-color: cornflowerblue;
+    flex-direction: column;
+}
+
+button {
+    background-color: darkslategray;
+    border-style: 2px ridge gray;
+    width: 100px;
+    height: 60px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 8px;
+
+}
+
+h1 {
+    margin-bottom: 120px;
+}
