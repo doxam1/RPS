@@ -54,6 +54,9 @@ function playRound () {
 }
 
 
+// need to fix the winning algo, rock always wins right now.
+// shoud be rock win scissors, scissors wins papper, papper wins rock, 
+
 
 
 
