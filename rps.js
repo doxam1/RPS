@@ -44,13 +44,21 @@ function playRound () {
     playerSelection();
     getComputerChoice();
     console.log(compAnswerGlobal, userAnswerGlobal);
-    if (parseInt(compAnswerGlobal) > parseInt(userAnswerGlobal)) {
-        console.log ('you lose! ' + compAnswerGlobalString + ' is stronger then ' + userAnswerGlobalString);
-    } else if (parseInt(userAnswerGlobal) > parseInt(compAnswerGlobal)) {
-        console.log ('You Win! ' + userAnswerGlobalString + ' is stronger then ' + compAnswerGlobalString);
-    } else {
-        console.log ('It\'s a tie! you both choose ' + compAnswerGlobalString);
-    }
+    (userAnswerGlobal == 2 && compAnswerGlobal == 1) ||
+    (userAnswerGlobal == 1 && compAnswerGlobal == 0) ||
+    (userAnswerGlobal == 0 && compAnswerGlobal == 2) ?
+    console.log ('You Win! ' + userAnswerGlobalString + ' is stronger then ' + compAnswerGlobalString) :
+    (compAnswerGlobalString == userAnswerGlobalString) ? 
+    console.log ('It\'s a tie! you both choose ' + compAnswerGlobalString) :
+    console.log ('you lose! ' + compAnswerGlobalString + ' is stronger then ' + userAnswerGlobalString);
+
+    // if (parseInt(compAnswerGlobal) > parseInt(userAnswerGlobal)) {
+    //     console.log ('you lose! ' + compAnswerGlobalString + ' is stronger then ' + userAnswerGlobalString);
+    // } else if (parseInt(userAnswerGlobal) > parseInt(compAnswerGlobal)) {
+    //     console.log ('You Win! ' + userAnswerGlobalString + ' is stronger then ' + compAnswerGlobalString);
+    // } else {
+    //     console.log ('It\'s a tie! you both choose ' + compAnswerGlobalString);
+    // }
 }
 
 
