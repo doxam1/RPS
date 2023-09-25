@@ -65,7 +65,18 @@ function playRound () {
 }
 
 
-
+function playFiveRounds () {
+    while (compWin + playerWin < 5) {
+        playRound()
+    }
+    if (compWin > playerWin) {
+        alert ('Sorry you lose! try again. \n\rthe results:' + compWin + ':' + playerWin)
+    } else {
+        alert ('You won! \r\nthe results: ' + playerWin + ':' + compWin)
+    }
+    compWin = 0;
+    playerWin = 0;
+}
     // if (parseInt(compAnswerGlobal) > parseInt(userAnswerGlobal)) {
     //     console.log ('you lose! ' + compAnswerGlobalString + ' is stronger then ' + userAnswerGlobalString);
     // } else if (parseInt(userAnswerGlobal) > parseInt(compAnswerGlobal)) {
