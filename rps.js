@@ -40,17 +40,31 @@ function playerSelection () {
         playerSelection();
     }
 }
+
+let compWin = 0
+let playerWin = 0
+
 function playRound () {
     playerSelection();
     getComputerChoice();
     console.log(compAnswerGlobal, userAnswerGlobal);
+    if (
     (userAnswerGlobal == 2 && compAnswerGlobal == 1) ||
     (userAnswerGlobal == 1 && compAnswerGlobal == 0) ||
-    (userAnswerGlobal == 0 && compAnswerGlobal == 2) ?
-    console.log ('You Win! ' + userAnswerGlobalString + ' is stronger then ' + compAnswerGlobalString) :
-    (compAnswerGlobalString == userAnswerGlobalString) ? 
-    console.log ('It\'s a tie! you both choose ' + compAnswerGlobalString) :
+    (userAnswerGlobal == 0 && compAnswerGlobal == 2)) { 
+    console.log ('You Win! ' + userAnswerGlobalString + ' is stronger then ' + compAnswerGlobalString);
+    playerWin = ++playerWin;
+    } else if    
+    (compAnswerGlobalString == userAnswerGlobalString) { 
+    console.log ('It\'s a tie! you both choose ' + compAnswerGlobalString)
+    } else {
     console.log ('you lose! ' + compAnswerGlobalString + ' is stronger then ' + userAnswerGlobalString);
+    compWin = ++compWin;
+
+    }
+}
+
+
 
     // if (parseInt(compAnswerGlobal) > parseInt(userAnswerGlobal)) {
     //     console.log ('you lose! ' + compAnswerGlobalString + ' is stronger then ' + userAnswerGlobalString);
@@ -59,7 +73,7 @@ function playRound () {
     // } else {
     //     console.log ('It\'s a tie! you both choose ' + compAnswerGlobalString);
     // }
-}
+
 
 
 // need to fix the winning algo, rock always wins right now.
