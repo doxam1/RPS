@@ -10,13 +10,25 @@
 
 </head>
 <body>
-    <h1> Rock Paper Scissors Game! </h1>
+    <h1> Rock Paper Scissors Game </h1>
+    <div class="gameMain">
     <button id="startGame"> Start Game </button>
+    <div>
+    <div>
+    <span> Computer: <span id="compResult"></span> <br> </span> <span> Player: <span id="playerResult"></span> </span><br>  
+    <span> draw:  <span class="drawResult"></span> </span>
+    </div>
+    <p id="results"></p>
+    </div> 
+    </div>
 
     <script>
         let startGame = document.getElementById("startGame");
         startGame.addEventListener("click", function(){
         playFiveRounds()
+
+        
+
 });
     </script>
 </body>
