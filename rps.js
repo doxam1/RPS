@@ -38,12 +38,13 @@ function playerSelection () {
             userAnswerGlobal = +1;
             userAnswerGlobalString = 'scissors';
             console.log('you choose scissors');
-        } else {
+        }
+    } else {
         confirm ('sorry, you didn\'t choose 1,2 or 3, try again?') ? playerSelection():
         location.reload();
     }
 }
-}
+
 
 let compWin = 0;
 let playerWin = 0;
