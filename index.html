@@ -16,19 +16,19 @@
             <div class="controlers">
             <div class="img">Choose your Weapon:</div>
             <div>
-            <span><img src='./rock.png' width="60px" value="rock" class="userAnswer" ></span>
-            <span><img src='./paper.png' width="60px" value="paper" class="userAnswer"></span>
-            <span><img src='./scissors.png' width="60px" value="scissors" class="userAnswer"></span>
+            <span><img src='./rock.png'  value="rock" class="userAnswer" ></span>
+            <span><img src='./paper.png'  value="paper" class="userAnswer"></span>
+            <span><img src='./scissors.png'  value="scissors" class="userAnswer"></span>
             </div><div></div>
             <div class="userControls">
             <div> Computer choice</div>
-            <div class="compImg"></div>           
+            <div class="compBeforeImg"><div class="compImg"></div></div>        
             </div></div>
             </div>
 
-               <div class="userControls">
+               <!-- <div class="userControls">
                <button id="startGame"> Fight! </button>
-              </div>
+              </div> -->
 
 
     <div>
@@ -37,18 +37,8 @@
     <span> draw:  <span id="drawResult"></span> </span>
     </div>
     <p id="results"></p>
-    </div>    
+     
     <h1 class="endResult"></h1>
     </div>
-
-    <script>
-        let startGame = document.getElementById("startGame");
-        startGame.addEventListener("click", function(){
-        playFiveRounds()
-
-        
-
-});
-    </script>
 </body>
 </html>

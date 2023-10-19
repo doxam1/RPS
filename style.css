@@ -41,7 +41,9 @@ span, #results, div{
 }
 
 img {
+    border:2px ridge black;
     transition: all .5s;
+    width: 80px;
     /* border:2px solid gray; */
     /* margin-right:0; */
 }
@@ -54,3 +56,10 @@ input[type*='radio'] {
     transform:scale(1.2);
 }
 
+.compBeforeImg {
+    /* border:1px solid white;  debugging */
+    width: 80px;
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+}

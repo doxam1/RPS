@@ -16,21 +16,24 @@ function getComputerChoice () {
     }
 }
 const playerImg = document.querySelector('.img');
-// playerImg.innerHTML = '<img src="./rock.png" width="60px">'
-// const userAnswerSelect = document.querySelector('.userAnswer');
 
 const userAnswerSelectOptions = document.querySelectorAll('img[class=userAnswer');
 
 userAnswerSelectOptions.forEach((label) => {
-    label.addEventListener('click', playerClicked);
-    
+    label.addEventListener('click', playerClicked);   
 });
+
 let clicked;
 let userAnswerSelect = '';
+
 //function for user clicking on option 
 function playerClicked(label) {
     clicked = label.target.classList.add('clicked')
     userAnswerSelect = label.target.getAttribute('value');
+    setTimeout(() => {
+        playFiveRounds()  
+    }, 500);
+    ;
 }
 
 
@@ -48,17 +51,17 @@ function changeCompImg() {
 let userAnswer = '';
 function playerSelection () {
     userAnswer = userAnswerSelect;
-    if (userAnswer == 1 || userAnswer.toLowerCase() == 'paper'|| userAnswer == 2 || userAnswer.toLowerCase() == 'rock' ||
-    userAnswer == 3 || userAnswer.toLowerCase() == 'scissors') {
-        if (userAnswer == 1 || userAnswer.toLowerCase() == 'rock') {
+    if (userAnswer.toLowerCase() == 'paper'|| userAnswer.toLowerCase() == 'rock' ||
+        userAnswer.toLowerCase() == 'scissors') {
+        if (userAnswer.toLowerCase() == 'rock') {
             userAnswerGlobal = +2;
             userAnswerGlobalString = 'rock';
             console.log('you choose rock');
-        } else if (userAnswer == 2 || userAnswer.toLowerCase() == 'paper') {
+        } else if (userAnswer.toLowerCase() == 'paper') {
             userAnswerGlobalString = 'paper';
             userAnswerGlobal = +0;
             console.log('you choose paper')
-        } else if (userAnswer == 3 || userAnswer.toLowerCase() == 'scissors') {
+        } else if (userAnswer.toLowerCase() == 'scissors') {
             userAnswerGlobal = +1;
             userAnswerGlobalString = 'scissors';
             console.log('you choose scissors');
@@ -80,13 +83,11 @@ function playRound () {
     (userAnswer == 'scissors' && compAnswerGlobal == 0) ||
     (userAnswer == 'paper' && compAnswerGlobal == 2)) { 
         changeCompImg()
-        // setTimeout(() => {
-        //     alert ('You Win! ' + userAnswerGlobalString + ' is stronger then ' + compAnswerGlobalString);
-   
-        // }, 750);
     playerWin = ++playerWin;
     console.log ('player wins this round')
-    document.getElementById('playerResult').innerHTML = playerWin;
+    setTimeout(() => {
+        document.getElementById('playerResult').innerHTML = playerWin;
+    }, 500);
     } else if    
     (compAnswerGlobalString == userAnswer) { 
         changeCompImg()
@@ -94,7 +95,9 @@ function playRound () {
     //     alert ('It\'s a tie! you both choose ' + compAnswerGlobalString); 
     // }, 750);
     drawResult = ++drawResult;
-    document.getElementById('drawResult').textContent = drawResult;
+    setTimeout(() => {
+        document.getElementById('drawResult').textContent = drawResult;
+    }, 500);
     userAnswerGlobalString = 'break';
     console.log ('this round is a tie')
     } else if ((compAnswerGlobal == 2 && userAnswer == 'scissors') ||
@@ -105,13 +108,17 @@ function playRound () {
     //     alert ('you lose! ' + compAnswerGlobalString + ' is stronger then ' + userAnswer);
     // }, 750);
     compWin = ++compWin;
-    document.getElementById('compResult').textContent = compWin;
+    setTimeout(() => {
+      document.getElementById('compResult').textContent = compWin;  
+    }, 500);
     console.log('computer wins this round')
     userAnswerGlobalString = 'break';
     }
     const noScale = document.querySelectorAll('img');
-    console.log(noScale)
-    noScale.forEach((img) => img.removeAttribute('class', 'clicked'));
+
+    noScale.forEach((img) => {
+        img.removeAttribute('class', 'clicked')
+    });
     // changeCompImg()
     
     
@@ -130,10 +137,13 @@ function showResults() {
 function playFiveRounds () {
     playRound();
     if (compWin+playerWin+drawResult == 5) {
+        setTimeout(() => {
+            
+        
         const userControls = document.querySelectorAll('.userControls')
         userControls[1].setAttribute('style', 'display:none')
         userControls[0].setAttribute('style', 'display:none')
-        userControls[2].setAttribute('style', 'display:none')
+        // userControls[2].setAttribute('style', 'display:none')
         const endResult = document.querySelector('.endResult');
         endResult.textContent = 'Thank you for playing!'
         const playAgain = document.createElement('button');
@@ -143,10 +153,9 @@ function playFiveRounds () {
         playAgain.onclick = function() {
             location.reload(true);  
         }
-
-
+        // עם טרנסישיין לעשות שכל הדף מסתובב בסוף - שימוש בבודי עצמו
+        }, 1500);
     }
-
 }
 
 const results = document.querySelector('#results')
