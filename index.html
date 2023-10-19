@@ -13,22 +13,24 @@
     <h1> Rock Paper Scissors Game </h1>
     <div class="gameMain">
         <div class="userControls">
-            <span>
+            <div class="controlers">
             <div class="img">Choose your Weapon:</div>
-            <select class="userAnswer">
-              <option value="rock">Rock</option>
-              <option value="paper">Paper</option>
-              <option value="scissors">Scissors</option>
-            </select></span>
-            </div>
+            <div>
+            <span><img src='./rock.png' width="60px" value="rock" class="userAnswer" ></span>
+            <span><img src='./paper.png' width="60px" value="paper" class="userAnswer"></span>
+            <span><img src='./scissors.png' width="60px" value="scissors" class="userAnswer"></span>
+            </div><div></div>
             <div class="userControls">
             <div> Computer choice</div>
             <div class="compImg"></div>           
+            </div></div>
             </div>
-            </div>
-        <div class="userControls">
-            <button id="startGame"> Fight! </button>
-        </div>
+
+               <div class="userControls">
+               <button id="startGame"> Fight! </button>
+              </div>
+
+
     <div>
     <div>
     <span> Computer: <span id="compResult"></span> <br> </span> <span> Player: <span id="playerResult"></span> </span><br>  
@@ -37,7 +39,8 @@
     <p id="results"></p>
     </div>    
     <h1 class="endResult"></h1>
-    
+    </div>
+
     <script>
         let startGame = document.getElementById("startGame");
         startGame.addEventListener("click", function(){

@@ -1,7 +1,7 @@
 body {
     border: 3px solid #fff;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 97vh;
     /* border: 2px solid rgb(218, 25, 137); */
@@ -21,13 +21,14 @@ button {
 
 }
 .gameMain {
-    width: 60%;
+    width: 50%;
     display: flex;
+    flex-direction:column;
     justify-content: space-evenly;
     text-align: center;
     gap:24px;
     align-items: center;
-    height: 250px;
+    /* height: 250px; */
 }
 h1 {
     text-align: center;
@@ -39,7 +40,17 @@ span, #results, div{
     font-size: 18px;
 }
 
-.img {
+img {
+    transition: all .5s;
     /* border:2px solid gray; */
     /* margin-right:0; */
 }
+
+input[type*='radio'] {
+    display: none;
+}
+
+.clicked {
+    transform:scale(1.2);
+}
+

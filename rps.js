@@ -16,19 +16,23 @@ function getComputerChoice () {
     }
 }
 const playerImg = document.querySelector('.img');
-playerImg.innerHTML = '<img src="./rock.png" width="60px">'
-const userAnswerSelect = document.querySelector('.userAnswer');
+// playerImg.innerHTML = '<img src="./rock.png" width="60px">'
+// const userAnswerSelect = document.querySelector('.userAnswer');
 
-const userAnswerSelectOptions = document.querySelector('select');
-userAnswerSelectOptions.addEventListener('click', changePlayerImg);
+const userAnswerSelectOptions = document.querySelectorAll('img[class=userAnswer');
 
-function changePlayerImg() {
-if (userAnswerSelectOptions.value == 'rock'){
-    playerImg.innerHTML = '<img src="./rock.png" width="60px">';
- } else if (userAnswerSelectOptions.value == 'scissors'){
-    playerImg.innerHTML = '<img src="./scissors.png" width="60px">';
- } else playerImg.innerHTML = '<img src="./paper.png" width="60px">';
-};
+userAnswerSelectOptions.forEach((label) => {
+    label.addEventListener('click', playerClicked);
+    
+});
+let clicked;
+let userAnswerSelect = '';
+//function for user clicking on option 
+function playerClicked(label) {
+    clicked = label.target.classList.add('clicked')
+    userAnswerSelect = label.target.getAttribute('value');
+}
+
 
 const compAnswerImg = document.querySelector('.compImg');
 // userAnswerSelectOptions.addEventListener('change', changeCompImg);
@@ -41,9 +45,9 @@ function changeCompImg() {
      } else compAnswerImg.innerHTML = '<img src="./paper.png" width="60px">';
     };
 
-
+let userAnswer = '';
 function playerSelection () {
-    userAnswer = userAnswerSelect.value;
+    userAnswer = userAnswerSelect;
     if (userAnswer == 1 || userAnswer.toLowerCase() == 'paper'|| userAnswer == 2 || userAnswer.toLowerCase() == 'rock' ||
     userAnswer == 3 || userAnswer.toLowerCase() == 'scissors') {
         if (userAnswer == 1 || userAnswer.toLowerCase() == 'rock') {
@@ -60,7 +64,7 @@ function playerSelection () {
             console.log('you choose scissors');
         }
     } else {
-        confirm ('sorry, you didn\'t choose 1,2 or 3, try again?') ? playerSelection():
+        confirm ('Please choose your weapon') ? userAnswerSelectOptions.focus():
         location.reload();
     }}
 
@@ -75,13 +79,20 @@ function playRound () {
     (userAnswer == 'rock' && compAnswerGlobal == 1) ||
     (userAnswer == 'scissors' && compAnswerGlobal == 0) ||
     (userAnswer == 'paper' && compAnswerGlobal == 2)) { 
-    alert ('You Win! ' + userAnswerGlobalString + ' is stronger then ' + compAnswerGlobalString);
+        changeCompImg()
+        // setTimeout(() => {
+        //     alert ('You Win! ' + userAnswerGlobalString + ' is stronger then ' + compAnswerGlobalString);
+   
+        // }, 750);
     playerWin = ++playerWin;
     console.log ('player wins this round')
     document.getElementById('playerResult').innerHTML = playerWin;
     } else if    
     (compAnswerGlobalString == userAnswer) { 
-    alert ('It\'s a tie! you both choose ' + compAnswerGlobalString);
+        changeCompImg()
+    // setTimeout(() => {
+    //     alert ('It\'s a tie! you both choose ' + compAnswerGlobalString); 
+    // }, 750);
     drawResult = ++drawResult;
     document.getElementById('drawResult').textContent = drawResult;
     userAnswerGlobalString = 'break';
@@ -89,13 +100,20 @@ function playRound () {
     } else if ((compAnswerGlobal == 2 && userAnswer == 'scissors') ||
     (compAnswerGlobal == 1 && userAnswer == 'paper') ||
     (compAnswerGlobal == 0 && userAnswer == 'rock')) {
-    alert ('you lose! ' + compAnswerGlobalString + ' is stronger then ' + userAnswer);
+        changeCompImg();
+    // setTimeout(() => {
+    //     alert ('you lose! ' + compAnswerGlobalString + ' is stronger then ' + userAnswer);
+    // }, 750);
     compWin = ++compWin;
     document.getElementById('compResult').textContent = compWin;
     console.log('computer wins this round')
     userAnswerGlobalString = 'break';
     }
-    changeCompImg()
+    const noScale = document.querySelectorAll('img');
+    console.log(noScale)
+    noScale.forEach((img) => img.removeAttribute('class', 'clicked'));
+    // changeCompImg()
+    
     
 }
 
@@ -123,7 +141,7 @@ function playFiveRounds () {
         endResult.appendChild(playAgain);
         showEndResults();
         playAgain.onclick = function() {
-            location.reload();  
+            location.reload(true);  
         }
 
 
