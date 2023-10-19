@@ -7,6 +7,7 @@ body {
     /* border: 2px solid rgb(218, 25, 137); */
     background-color: cornflowerblue;
     flex-direction: column;
+    text-align: center;
 }
 
 button {
@@ -26,14 +27,19 @@ button {
     text-align: center;
     gap:24px;
     align-items: center;
-    height: 180px;
+    height: 250px;
 }
 h1 {
     text-align: center;
     color:rgb(255, 255, 255);
     margin-bottom: 120px;
 }
-span, #results{
+span, #results, div{
     color:rgb(255, 255, 255);
-    font-size: 28px;
+    font-size: 18px;
+}
+
+.img {
+    /* border:2px solid gray; */
+    /* margin-right:0; */
 }

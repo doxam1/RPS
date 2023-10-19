@@ -15,16 +15,36 @@ function getComputerChoice () {
         compAnswerGlobalString = ('rock')
     }
 }
-let userAnswer;
-let userAnswerGlobal;
-let userAnswerGlobalString;
+const playerImg = document.querySelector('.img');
+playerImg.innerHTML = '<img src="./rock.png" width="60px">'
+const userAnswerSelect = document.querySelector('.userAnswer');
+
+const userAnswerSelectOptions = document.querySelector('select');
+userAnswerSelectOptions.addEventListener('click', changePlayerImg);
+
+function changePlayerImg() {
+if (userAnswerSelectOptions.value == 'rock'){
+    playerImg.innerHTML = '<img src="./rock.png" width="60px">';
+ } else if (userAnswerSelectOptions.value == 'scissors'){
+    playerImg.innerHTML = '<img src="./scissors.png" width="60px">';
+ } else playerImg.innerHTML = '<img src="./paper.png" width="60px">';
+};
+
+const compAnswerImg = document.querySelector('.compImg');
+// userAnswerSelectOptions.addEventListener('change', changeCompImg);
+
+function changeCompImg() {
+    if (compAnswerGlobalString == 'rock'){
+        compAnswerImg.innerHTML = '<img src="./rock.png" width="60px">';
+     } else if (compAnswerGlobalString == 'scissors'){
+        compAnswerImg.innerHTML = '<img src="./scissors.png" width="60px">';
+     } else compAnswerImg.innerHTML = '<img src="./paper.png" width="60px">';
+    };
+
+
 function playerSelection () {
-    userAnswer = prompt('please choose:\r\n 1. rock 2. paper 3.scissors - \r\nenter number or text:');
-    if (userAnswer === null || userAnswer === undefined || userAnswer === "") {
-        userAnswerGlobalString == 'break';
-        confirm ('sorry, you didn\'t choose 1,2 or 3, try again?') ? playerSelection():
-        location.reload(true);
-    } else if (userAnswer == 1 || userAnswer.toLowerCase() == 'paper'|| userAnswer == 2 || userAnswer.toLowerCase() == 'rock' ||
+    userAnswer = userAnswerSelect.value;
+    if (userAnswer == 1 || userAnswer.toLowerCase() == 'paper'|| userAnswer == 2 || userAnswer.toLowerCase() == 'rock' ||
     userAnswer == 3 || userAnswer.toLowerCase() == 'scissors') {
         if (userAnswer == 1 || userAnswer.toLowerCase() == 'rock') {
             userAnswerGlobal = +2;
@@ -42,8 +62,7 @@ function playerSelection () {
     } else {
         confirm ('sorry, you didn\'t choose 1,2 or 3, try again?') ? playerSelection():
         location.reload();
-    }
-}
+    }}
 
 
 let compWin = 0;
@@ -52,35 +71,32 @@ let drawResult = 0;
 function playRound () {
     playerSelection();
     getComputerChoice();
-    console.log(compAnswerGlobal, userAnswerGlobal);
-    if (userAnswerGlobalString == 'break') {
-        showEndResults();
-        showResults();
-    }
-    else if (
-    (userAnswerGlobal == 2 && compAnswerGlobal == 1) ||
-    (userAnswerGlobal == 1 && compAnswerGlobal == 0) ||
-    (userAnswerGlobal == 0 && compAnswerGlobal == 2)) { 
+    if (
+    (userAnswer == 'rock' && compAnswerGlobal == 1) ||
+    (userAnswer == 'scissors' && compAnswerGlobal == 0) ||
+    (userAnswer == 'paper' && compAnswerGlobal == 2)) { 
     alert ('You Win! ' + userAnswerGlobalString + ' is stronger then ' + compAnswerGlobalString);
     playerWin = ++playerWin;
     console.log ('player wins this round')
-    userAnswerGlobalString = 'break';
-    // document.getElementById('playerResult').innerHTML = playerWin;
+    document.getElementById('playerResult').innerHTML = playerWin;
     } else if    
-    (compAnswerGlobalString == userAnswerGlobalString) { 
+    (compAnswerGlobalString == userAnswer) { 
     alert ('It\'s a tie! you both choose ' + compAnswerGlobalString);
     drawResult = ++drawResult;
+    document.getElementById('drawResult').textContent = drawResult;
     userAnswerGlobalString = 'break';
     console.log ('this round is a tie')
-    } else if ((compAnswerGlobal == 2 && userAnswerGlobal == 1) ||
-    (compAnswerGlobal == 1 && userAnswerGlobal == 0) ||
-    (compAnswerGlobal == 0 && userAnswerGlobal == 2)) {
-    alert ('you lose! ' + compAnswerGlobalString + ' is stronger then ' + userAnswerGlobalString);
+    } else if ((compAnswerGlobal == 2 && userAnswer == 'scissors') ||
+    (compAnswerGlobal == 1 && userAnswer == 'paper') ||
+    (compAnswerGlobal == 0 && userAnswer == 'rock')) {
+    alert ('you lose! ' + compAnswerGlobalString + ' is stronger then ' + userAnswer);
     compWin = ++compWin;
+    document.getElementById('compResult').textContent = compWin;
     console.log('computer wins this round')
     userAnswerGlobalString = 'break';
-    // document.getElementById('compResult').innerHTML = compWin;
     }
+    changeCompImg()
+    
 }
 
 // show game scores.
@@ -88,34 +104,35 @@ function showResults() {
     document.getElementById('compResult').innerHTML = compWin;
     document.getElementById('playerResult').innerHTML = playerWin;
     document.querySelector(".drawResult").textContent = drawResult;
-    // compResult.innerText = compWin;
-    // playerResult.innerText = playerWin;
+    
 }
 
 
 
 function playFiveRounds () {
-    let results = document.getElementById('results');
-    let i=0;
-    while (i < 5) {
-        //i'm doing it like that because otherwise it doesn't work like i want in chrome. (but works when using firefox)
-        if (i==0) confirm ('let\'s play five rounds, ok?') ?  playRound() : i=5;
-        if (i==1) confirm ('next round?') ? playRound() : i=5;
-        if (i==2) confirm ('next round?') ? playRound() : i=5;
-        if (i==3) confirm ('next round?') ? playRound() : i=5;
-        if (i==4) confirm ('next round?') ? playRound() : i=5;
-        showResults();
-        i = ++i;
+    playRound();
+    if (compWin+playerWin+drawResult == 5) {
+        const userControls = document.querySelectorAll('.userControls')
+        userControls[1].setAttribute('style', 'display:none')
+        userControls[0].setAttribute('style', 'display:none')
+        userControls[2].setAttribute('style', 'display:none')
+        const endResult = document.querySelector('.endResult');
+        endResult.textContent = 'Thank you for playing!'
+        const playAgain = document.createElement('button');
+        playAgain.textContent = 'play again';
+        endResult.appendChild(playAgain);
+        showEndResults();
+        playAgain.onclick = function() {
+            location.reload();  
+        }
+
+
     }
-    // for (let i = 0; i < 5; ++i) {
-    //     playRound();        
-    //     showResults();        
-    // }
-    showEndResults();
+
 }
 
+const results = document.querySelector('#results')
 function showEndResults () {
-    showResults();
     if (compWin > playerWin) {
         // alert ('Sorry you lose! try again. \n\rthe results: ' + compWin + ':' + playerWin);
         results.textContent = 'Sorry you lose! try again. \n\rthe results: ' + compWin + ':' + playerWin;
@@ -126,7 +143,4 @@ function showEndResults () {
         // alert ('it\'s a tie! \r\nthe results: ' + playerWin + ':' + compWin);
         results.textContent = 'It\'s a tie! \r\nthe results: ' + playerWin + ':' + compWin;
     }
-    compWin = 0;
-    playerWin = 0;
-    drawResult = 0;
 }

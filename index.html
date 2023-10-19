@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css" />
-    <script type="text/javascript" src="./rps.js"></script>
+    <script type="text/javascript" src="./rps.js" defer></script>
     <title> Rock Paper Scissors </title>
 
 
@@ -12,16 +12,32 @@
 <body>
     <h1> Rock Paper Scissors Game </h1>
     <div class="gameMain">
-    <button id="startGame"> Start Game </button>
+        <div class="userControls">
+            <span>
+            <div class="img">Choose your Weapon:</div>
+            <select class="userAnswer">
+              <option value="rock">Rock</option>
+              <option value="paper">Paper</option>
+              <option value="scissors">Scissors</option>
+            </select></span>
+            </div>
+            <div class="userControls">
+            <div> Computer choice</div>
+            <div class="compImg"></div>           
+            </div>
+            </div>
+        <div class="userControls">
+            <button id="startGame"> Fight! </button>
+        </div>
     <div>
     <div>
     <span> Computer: <span id="compResult"></span> <br> </span> <span> Player: <span id="playerResult"></span> </span><br>  
-    <span> draw:  <span class="drawResult"></span> </span>
+    <span> draw:  <span id="drawResult"></span> </span>
     </div>
     <p id="results"></p>
-    </div> 
-    </div>
-
+    </div>    
+    <h1 class="endResult"></h1>
+    
     <script>
         let startGame = document.getElementById("startGame");
         startGame.addEventListener("click", function(){
