@@ -83,12 +83,13 @@ function playRound () {
     (userAnswer == 'rock' && compAnswerGlobal == 1) ||
     (userAnswer == 'scissors' && compAnswerGlobal == 0) ||
     (userAnswer == 'paper' && compAnswerGlobal == 2)) { 
+        results.textContent = 'You Win! ' + userAnswer + ' is stronger then ' + compAnswerGlobalString;
         changeCompImg()
     playerWin = ++playerWin;
     console.log ('player wins this round')
     setTimeout(() => {
         document.getElementById('playerResult').innerHTML = playerWin;
-    }, 500);
+    }, 350);
     } else if    
     (compAnswerGlobalString == userAnswer) { 
         changeCompImg()
@@ -98,7 +99,7 @@ function playRound () {
     drawResult = ++drawResult;
     setTimeout(() => {
         document.getElementById('drawResult').textContent = drawResult;
-    }, 500);
+    }, 350);
     userAnswerGlobalString = 'break';
     console.log ('this round is a tie')
     } else if ((compAnswerGlobal == 2 && userAnswer == 'scissors') ||
@@ -111,7 +112,7 @@ function playRound () {
     compWin = ++compWin;
     setTimeout(() => {
       document.getElementById('compResult').textContent = compWin;  
-    }, 500);
+    }, 350);
     console.log('computer wins this round')
     userAnswerGlobalString = 'break';
     }
