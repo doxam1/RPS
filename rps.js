@@ -75,6 +75,7 @@ function playerSelection () {
 let compWin = 0;
 let playerWin = 0;
 let drawResult = 0;
+const results = document.querySelector('#results')
 function playRound () {
     playerSelection();
     getComputerChoice();
@@ -92,7 +93,7 @@ function playRound () {
     (compAnswerGlobalString == userAnswer) { 
         changeCompImg()
     // setTimeout(() => {
-    //     alert ('It\'s a tie! you both choose ' + compAnswerGlobalString); 
+    results.textContent = 'It\'s a tie! you both choose ' + compAnswerGlobalString; 
     // }, 750);
     drawResult = ++drawResult;
     setTimeout(() => {
@@ -105,7 +106,7 @@ function playRound () {
     (compAnswerGlobal == 0 && userAnswer == 'rock')) {
         changeCompImg();
     // setTimeout(() => {
-    //     alert ('you lose! ' + compAnswerGlobalString + ' is stronger then ' + userAnswer);
+     results.textContent = 'you lose! ' + compAnswerGlobalString + ' is stronger then ' + userAnswer;
     // }, 750);
     compWin = ++compWin;
     setTimeout(() => {
@@ -158,7 +159,7 @@ function playFiveRounds () {
     }
 }
 
-const results = document.querySelector('#results')
+
 function showEndResults () {
     if (compWin > playerWin) {
         // alert ('Sorry you lose! try again. \n\rthe results: ' + compWin + ':' + playerWin);
